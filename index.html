@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>УРЕТРА ФИЗИЧКИ | GandonPRO Industries</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Meta -->
+  <meta name="description" content="УРЕТРА ФИЗИЧКИ — мерзлый трэш-выживач в ебаной Карелии. Красивый сайт, много анимаций, без спойлеров.">
+  <meta name="theme-color" content="#0b1c2e">
+
+  <style>
+    :root {
+      --dark-blue: #0b1c2e;
+      --black: #000000;
+      --white: #e6eff9;
+      --muted-white: #cfe0f5;
+      --karelia-blue: #0077cc;
+      --karelia-red: #cc0033;
+      --karelia-green: #009966;
+      --glass: rgba(255,255,255,0.08);
+      --glass-strong: rgba(255,255,255,0.16);
+    }
+
+    /* Global reset + base */
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Inter", "Courier New", monospace;
+      color: var(--white);
+      background: radial-gradient(1800px 1000px at 20% 0%, #02101e 0%, #071a2b 30%, #0b1c2e 60%, #000 100%);
+      overflow-x: hidden;
+      /* animated background gradient drift */
+      background-size: 120% 120%;
+      animation: bgDrift 30s ease-in-out infinite alternate;
+    }
+
+    @keyframes bgDrift {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 100% 100%; }
+    }
+
+    /* Layered decorative gradients (Karelia flag accent) */
+    .karelia-accent {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background:
+       radial-gradient(600px 250px at 90% 15%, rgba(204,0,51,0.14), transparent 55%),
+       radial-gradient(800px 300px at 10% 10%, rgba(0,119,204,0.18), transparent 60%),
+       radial-gradient(700px 260px at 50% 85%, rgba(0,153,102,0.14), transparent 60%);
+      mix-blend-mode: screen;
+      filter: blur(8px);
+    }
+
+    /* Subtle snowfall */
+    .snow {
+      position: fixed;
+      pointer-events: none;
+      z-index: 1;
+      inset: 0;
+      background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,0.25), transparent 40%),
+        radial-gradient(2px 2px at 30% 80%, rgba(255,255,255,0.2), transparent 40%),
+        radial-gradient(1px 1px at 70% 10%, rgba(255,255,255,0.2), transparent 40%),
+        radial-gradient(1px 1px at 50% 60%, rgba(255,255,255,0.25), transparent 40%);
+      background-size: cover;
+      animation: snowDrift 24s linear infinite;
+      opacity: 0.35;
+    }
+    @keyframes snowDrift {
+      0% { transform: translateY(0px); }
+      100% { transform: translateY(80px); }
+    }
+
+    /* Occasional corner glitch sparks */
+    .glitch-corners::before, .glitch-corners::after {
+      content: "";
+      position: fixed;
+      z-index: 2;
+      width: 140px; height: 140px;
+      background: conic-gradient(from 180deg at 50% 50%, rgba(255,255,255,0.25), rgba(0,119,204,0.1), rgba(204,0,51,0.1), rgba(0,153,102,0.1), transparent 70%);
+      filter: blur(6px) brightness(1.1);
+      opacity: 0.0;
+      pointer-events: none;
+    }
+    .glitch-corners::before { top: -30px; left: -30px; }
+    .glitch-corners::after  { bottom: -30px; right: -30px; }
+    /* controlled by JS toggling glitch-active class */
+    .glitch-active::before, .glitch-active::after { opacity: 0.5; animation: glitchBlink 1.8s ease-in-out infinite; }
+    @keyframes glitchBlink {
+      0% { opacity: 0.15; transform: scale(0.95) rotate(0deg); }
+      50% { opacity: 0.55; transform: scale(1.05) rotate(2deg); }
+      100% { opacity: 0.15; transform: scale(0.95) rotate(-1deg); }
+    }
+
+    /* Header */
+    header {
+      position: relative;
+      z-index: 3;
+      padding: 60px 20px 30px;
+    }
+    .flag-bar {
+      height: 9px;
+      background: linear-gradient(90deg, var(--karelia-blue), var(--karelia-red), var(--karelia-green));
+      box-shadow: 0 0 18px rgba(0,0,0,0.65);
+      animation: flagFlow 12s ease-in-out infinite alternate;
+    }
+    @keyframes flagFlow {
+      0% { filter: brightness(1); }
+      100% { filter: brightness(1.2) contrast(1.1); }
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 22px;
+    }
+    .logo-dot {
+      width: 18px; height: 18px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #fff, #94c8ff 60%, #0a3e65);
+      box-shadow: 0 0 20px rgba(148,200,255,0.6);
+      animation: logoPulse 3.2s ease-in-out infinite alternate;
+    }
+    @keyframes logoPulse {
+      0% { transform: scale(0.95); filter: drop-shadow(0 0 8px #0077cc); }
+      100% { transform: scale(1.08); filter: drop-shadow(0 0 16px #cc0033); }
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 72px;
+      letter-spacing: 1px;
+      text-shadow: 0 0 14px rgba(0,0,0,0.8), 0 0 32px rgba(0,119,204,0.35);
+      animation: titleGlow 3.8s ease-in-out infinite alternate;
+    }
+    @keyframes titleGlow {
+      0% { text-shadow: 0 0 12px rgba(0,0,0,0.8), 0 0 26px rgba(0,119,204,0.45); transform: translateY(0); }
+      100% { text-shadow: 0 0 14px rgba(0,0,0,0.85), 0 0 32px rgba(204,0,51,0.4); transform: translateY(-1px); }
+    }
+    .tagline {
+      text-align: center;
+      margin-top: 8px;
+      font-size: 22px;
+      color: var(--muted-white);
+      opacity: 0.92;
+      animation: fadeInUp 1.8s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Section base */
+    section {
+      position: relative;
+      z-index: 3;
+      padding: 60px 22px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Parallax containers */
+    .parallax {
+      will-change: transform;
+      transition: transform 0.35s ease-out;
+    }
+
+    /* Glass card */
+    .card {
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.55);
+      border-radius: 12px;
+      padding: 28px;
+      backdrop-filter: blur(6px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 16px 44px rgba(0,0,0,0.65); }
+
+    /* Fade-in on scroll */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 900ms ease, transform 900ms ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Description typography */
+    .description h2 {
+      margin: 0 0 14px 0;
+      font-size: 28px;
+      color: #b7d6f5;
+      letter-spacing: 0.5px;
+      text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .description p {
+      margin: 0 0 14px 0;
+      font-size: 18px;
+      line-height: 1.85;
+      color: var(--white);
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      margin-top: 34px;
+    }
+    .gallery-figure {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #0a1220;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.6);
+      transform: translateZ(0);
+    }
+    .gallery-figure::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient( to bottom, rgba(255,255,255,0.02), rgba(0,0,0,0.24) 70% );
+      pointer-events: none;
+    }
+    .gallery-figure img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      image-rendering: auto;
+      transform: scale(1.02);
+      opacity: 0;
+      transition: opacity 600ms ease, transform 600ms ease;
+    }
+    .gallery-figure img.loaded {
+      opacity: 1;
+      transform: scale(1.0);
+    }
+    .gallery-figure:hover img { transform: scale(1.04); }
+    .gallery-caption {
+      position: absolute;
+      left: 12px; bottom: 12px;
+      font-size: 14px;
+      color: #e2f0ff;
+      opacity: 0.88;
+      text-shadow: 0 0 8px rgba(0,0,0,0.8);
+    }
+
+    /* Platforms row */
+    .platforms {
+      margin-top: 46px;
+      text-align: center;
+    }
+    .platforms h2 {
+      font-size: 28px;
+      margin-bottom: 14px;
+      color: #b7d6f5;
+    }
+    .platform-icons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .platform-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .platform-item:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.6);
+    }
+    .platform-item img { width: 28px; height: 28px; filter: drop-shadow(0 0 6px rgba(255,255,255,0.2)); }
+    .platform-item span { font-size: 16px; color: var(--muted-white); }
+
+    /* Preorder CTA */
+    .preorder {
+      margin-top: 42px;
+      text-align: center;
+    }
+    .preorder h2 {
+      font-size: 30px;
+      color: #b7d6f5;
+      margin-bottom: 14px;
+    }
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 28px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--karelia-green), #0da77a);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.4px;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.55);
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+      animation: ctaPulse 2.6s ease-in-out infinite;
+    }
+    .cta:hover { transform: translateY(-1px) scale(1.02); box-shadow: 0 14px 34px rgba(0,0,0,0.65); filter: brightness(1.06); }
+    @keyframes ctaPulse {
+      0% { box-shadow: 0 10px 22px rgba(0,0,0,0.5); }
+      50% { box-shadow: 0 16px 42px rgba(0,0,0,0.65), 0 0 10px rgba(0,153,102,0.55); }
+      100% { box-shadow: 0 10px 22px rgba(0,0,0,0.5); }
+    }
+
+    /* Info stripes */
+    .info-stripe {
+      margin-top: 28px;
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .chip {
+      padding: 10px 16px;
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px;
+      color: var(--muted-white);
+      font-size: 14px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 3;
+      margin-top: 40px;
+      padding: 50px 22px 80px;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.35), rgba(0,0,0,0.7));
+      border-top: 2px solid rgba(0,153,102,0.35);
+      text-align: center;
+      color: #bfcfe4;
+    }
+    .footer-top {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+    .footer-top .flag-bar {
+      width: 140px; height: 6px; border-radius: 999px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    }
+    .footer-links {
+      display: flex;
+      gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 8px;
+    }
+    .footer-links a {
+      color: #d5e8ff;
+      text-decoration: none;
+      font-size: 14px;
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 8px 12px; border-radius: 8px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+      transition: transform 0.2s ease;
+    }
+    .footer-links a:hover { transform: translateY(-1px); }
+
+    /* Utility spacers */
+    .spacer-24 { height: 24px; }
+    .spacer-40 { height: 40px; }
+
+    /* Accessibility pref: reduce motion */
+    @media (prefers-reduced-motion: reduce) {
+      * { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body class="glitch-corners">
+
+  <!-- Ambient layers -->
+  <div class="karelia-accent" aria-hidden="true"></div>
+  <div class="snow" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="parallax">
+    <div class="flag-bar" aria-hidden="true"></div>
+    <div class="brand">
+      <div class="logo-dot" aria-hidden="true"></div>
+      <h1>УРЕТРА ФИЗИЧКИ</h1>
+    </div>
+    <div class="tagline">Какого хуя ты это играешь?</div>
+  </header>
+
+  <!-- Hero Gallery -->
+  <section class="fade-in parallax">
+    <div class="card description">
+      <h2>Коротко о главном</h2>
+      <p>Это не игра — это ебаный вызов. Сайт — такая же хуйня: красивый, холодный, и слегка ненормальный. Без спойлеров. Только вайб, атмосфера и желание влететь в снег по горло.</p>
+      <p>Тёмные леса, синие ночи, странные лица, и чувство, будто мир ведёт с тобой разговор шёпотом. Ты или идёшь дальше, или получаешь по щам от самой реальности.</p>
+    </div>
+
+    <div class="spacer-24"></div>
+
+    <div class="gallery">
+      <figure class="gallery-figure">
+        <img src="poster1.png" srcset="poster1@2x.webp 2x" alt="Постер 1 — лес, снег, бесконечный холод">
+        <figcaption class="gallery-caption"></figcaption>
+      </figure>
+      <figure class="gallery-figure">
+        <img src="poster2.png" srcset="poster2@2x.webp 2x" alt="Постер 2 — дальний свет, ледяная мгла">
+        <figcaption class="gallery-caption"></figcaption>
+      </figure>
+      <figure class="gallery-figure">
+        <img src="poster3.png" srcset="poster3@2x.webp 2x" alt="Постер 3 — ель, следы, кто-то рядом">
+        <figcaption class="gallery-caption"></figcaption>
+      </figure>
+      <figure class="gallery-figure">
+        <img src="Banner.png" srcset="screenshot1@2x.webp 2x" alt="Скриншот 1 — снег хрустит, воздух звенит">
+        <figcaption class="gallery-caption"></figcaption>
+      </figure>
+      <figure class="gallery-figure">
+        <img src="Banner2.png" srcset="screenshot2@2x.webp 2x" alt="Скриншот 2 — кто-то смотрит из леса">
+        <figcaption class="gallery-caption"></figcaption>
+      </figure>
+      <figure class="gallery-figure">
+        <img src="screenshot3.webp" srcset="screenshot3@2x.webp 2x" alt="Скриншот 3 — тропа, где снег запоминает шаги">
+        <figcaption class="gallery-caption"></figcaption>
+      </figure>
+      <figure class="gallery-figure">
+        <img src="Concept1.png" srcset="art1@2x.webp 2x" alt="Концепт-арт 1 — лёд, фарш, и абсурд">
+        <figcaption class="gallery-caption"></figcaption>
+      </figure>
+      <figure class="gallery-figure">
+        <img src="art2.webp" srcset="art2@2x.webp 2x" alt="Концепт-арт 2 — линия деревьев и тишина">
+        <figcaption class="gallery-caption"></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- World, Gameplay, Atmosphere -->
+  <section class="fade-in parallax">
+    <div class="card description">
+      <h2>О мире</h2>
+      <p>Карелия. Снег. Тишина. Но что-то не так. Лес дышит. Грибы смотрят. Ты не герой — ты просто влетел туда, где реальность любит ставить двойки тем, кто слишком уверен.</p>
+      <p>Ни спасения, ни нормальности. Только холод, фантомные тени, и странные намёки — будто мир решает проверить тебя на устойчивость к абсурду.</p>
+    </div>
+
+    <div class="spacer-24"></div>
+
+    <div class="card description">
+      <h2>О геймплее</h2>
+      <p>Бегаешь. Собираешь. Галлюцинируешь. NPC странные. Задания ещё страннее. Иногда кажется, что ты в игре. Иногда — что ты в контрольной. Иногда — что ты в сне, где всё слишком красиво, чтобы быть реальностью.</p>
+      <p>Без спойлеров. Просто знай: тут тишина умеет хрустеть, а снег помнит шаги.</p>
+    </div>
+
+    <div class="spacer-24"></div>
+
+    <div class="card description">
+      <h2>О атмосфере</h2>
+      <p>Синие ночи, чёрные деревья, белые блики, редкие зелёные и красные акценты. Вдалеке — ель, за ней — тень. В небе — будто формулы. В земле — память. В тебе — вопрос: какого хуя ты это играешь?</p>
+    </div>
+  </section>
+
+  <!-- Platforms + Preorder -->
+  <section class="fade-in parallax">
+    <div class="card">
+      <div class="platforms">
+        <h2>Планируется выход на платформах</h2>
+        <div class="platform-icons">
+          <div class="platform-item">
+          <div class="platform-item">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/windows8.png" alt="" loading="lazy">
+            <span>PC (Windows)</span>
+          </div>
+          <div class="platform-item">
+            <img src="https://img.icons8.com/ios-filled/50/ffffff/phone.png" alt="" loading="lazy">
+            <span>Mobile</span>
+          </div>
+        </div>
+
+        <div class="spacer-24"></div>
+
+        <div class="preorder">
+          <h2>Предзаказ открыт</h2>
+          <button class="cta" type="button">
+            <span>Предзаказать сейчас</span>
+          </button>
+
+          <div class="info-stripe">
+            <div class="chip">Издание: Стандарт</div>
+            <div class="chip">Регион: Карелия и весь холодный мир</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Extended gallery row -->
+  <section class="fade-in parallax">
+    <div class="card description">
+      <h2>Большая галерея</h2>
+      <p>Здесь — красиво и тёмно. Высокие ели, снег, и редкие моменты, когда глядя на картинку, ты чувствуешь холод сквозь экран. Всё без спойлеров: чистый визуальный удар.</p>
+    </div>
+
+    <div class="spacer-24"></div>
+
+    <div class="gallery">
+      <figure class="gallery-figure">
+        <img src="wide1.webp" srcset="wide1@2x.webp 2x" alt="Широкий постер — горизонталь, лес, динозавры">
+        <figcaption class="gallery-caption">Wide #1</figcaption>
+      </figure>
+      <figure class="gallery-figure">
+        <img src="wide2.webp" srcset="wide2@2x.webp 2x" alt="Тёмная деревушка, тусклый свет, дальняя фигура">
+        <figcaption class="gallery-caption">Wide #2</figcaption>
+      </figure>
+      <figure class="gallery-figure">
+        <img src="wide3.webp" srcset="wide3@2x.webp 2x" alt="Синий снег, чёрный лес, белые блики">
+        <figcaption class="gallery-caption">Wide #3</figcaption>
+      </figure>
+      <figure class="gallery-figure">
+        <img src="detail1.webp" srcset="detail1@2x.webp 2x" alt="Деталь — снег преломляет свет">
+        <figcaption class="gallery-caption">Detail #1</figcaption>
+      </figure>
+      <figure class="gallery-figure">
+        <img src="detail2.webp" srcset="detail2@2x.webp 2x" alt="Деталь — следы, которых не должно быть">
+        <figcaption class="gallery-caption">Detail #2</figcaption>
+      </figure>
+      <figure class="gallery-figure">
+        <img src="detail3.webp" srcset="detail3@2x.webp 2x" alt="Деталь — тень между елками">
+        <figcaption class="gallery-caption">Detail #3</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- Company / Brand -->
+  <section class="fade-in parallax">
+    <div class="card description">
+      <h2>GandonPRO Industries</h2>
+      <p>Мы любим максимализм, цвет, мерзлый стиль и ту самую северную атмосферу. Этот сайт — как ледяной плакат в лицо. Норм по смыслу, ёмкий по вайбу, без лишней хрени. Если завидуют — значит мы попали.</p>
+      <p>Наша задача простая: чтобы ты увидел, охуел, и захотел. Всё остальное — снег, деревья и чуть-чуть абсурда.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-top">
+      <div class="flag-bar" aria-hidden="true"></div>
+      <div class="flag-bar" aria-hidden="true"></div>
+      <div class="flag-bar" aria-hidden="true"></div>
+    </div>
+    <div>© 2025 GandonPRO Industries. Все права нахуй защищены. Сделано в Карелии.</div>
+    <div class="footer-links">
+      <a href="#" aria-label="Политика">Политика</a>
+      <a href="#" aria-label="Контакты">Контакты</a>
+      <a href="#" aria-label="Пресса">Пресса</a>
+      <a href="#" aria-label="Сообщество">Сообщество</a>
+    </div>
+  </footer>
+
+  <!-- Scripts: loaded at end to avoid blocking / ensure no bugs -->
+  <script>
+    // Ensure DOM is ready
+    document.addEventListener('DOMContentLoaded', function () {
+      // Smooth load for gallery images
+      document.querySelectorAll('.gallery-figure img').forEach(function (img) {
+        if (img.complete) {
+          img.classList.add('loaded');
+        } else {
+          img.addEventListener('load', function () { img.classList.add('loaded'); });
+        }
+      });
+
+      // Intersection Observer for fade-in
+      const faders = document.querySelectorAll('.fade-in');
+      const appearOptions = { threshold: 0.15, rootMargin: '0px 0px -50px 0px' };
+      const appearOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        });
+      }, appearOptions);
+      faders.forEach(fader => appearOnScroll.observe(fader));
+
+      // Parallax subtle movement on scroll
+      const parallaxElems = document.querySelectorAll('.parallax');
+      window.addEventListener('scroll', () => {
+        const s = window.scrollY || 0;
+        parallaxElems.forEach(el => {
+          const factor = 0.03; // subtle
+          el.style.transform = 'translateY(' + (s * factor) + 'px)';
+        });
+      });
+
+      // Occasional corner glitch toggles
+      const body = document.body;
+      function toggleGlitch() {
+        body.classList.add('glitch-active');
+        setTimeout(() => body.classList.remove('glitch-active'), 1800);
+      }
+      // random glitch every 12–22 seconds
+      function scheduleGlitch() {
+        const next = Math.floor(12000 + Math.random() * 10000);
+        setTimeout(() => { toggleGlitch(); scheduleGlitch(); }, next);
+      }
+      scheduleGlitch();
+
+      // CTA click (placeholder)
+      const cta = document.querySelector('.cta');
+      if (cta) {
+        cta.addEventListener('click', () => {
+          alert('Предзаказ: скоро. Следи за новостями. И да, какого хуя ты это играешь?');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
