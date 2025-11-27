@@ -103,7 +103,7 @@
     }
     .flag-bar {
       height: 9px;
-      background: linear-gradient(90deg, var(--karelia-blue), var(--karelia-red), var(--karelia-green));
+      background: linear-gradient(90deg, var(--karelia-red) 28%, var(--karelia-blue) 33% 62%, var(--karelia-green) 68% 100%);
       box-shadow: 0 0 18px rgba(0,0,0,0.65);
       animation: flagFlow 12s ease-in-out infinite alternate;
     }
@@ -386,6 +386,16 @@
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; }
     }
+    .gradient-text {
+	color: transparent;    
+	-webkit-background-clip: text;
+	background-clip: text;
+	background-image: linear-gradient(90deg, red 45%, blue 49% 52%, green 56%);
+  text-align: center;
+  margin-top: 8px;
+  font-size: 16px;
+  animation: fadeInUp 1.8s ease;
+}
   </style>
 </head>
 <body class="glitch-corners">
@@ -402,7 +412,8 @@
       <h1>УРЕТРА ФИЗИЧКИ</h1>
     </div>
     <div class="tagline">Какого хуя ты это играешь?</div>
-  </header>
+<div class="gradient-text">MADE IN KARJALA</div>
+  </header> 
 
   <!-- Hero Gallery -->
   <section class="fade-in parallax">
